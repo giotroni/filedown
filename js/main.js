@@ -46,7 +46,7 @@ var app = {
             // fs.root.getDirectory('downl', { create: true });
          
             // we will save file in .. downloads/phonegap-logo.png
-            var filePath = fs.root.toURL() + '/immagine.png';
+            var filePath = fs.root.toURL() + 'immagine.png';
             alert(filePath);
             var fileTransfer = new window.FileTransfer();
             var uri = encodeURI(url);
