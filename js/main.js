@@ -36,31 +36,36 @@ var app = {
         var smallImage = document.getElementById('smallImage');    
         // Show the captured photo The inline CSS rules are used to resize the image
         smallImage.src = imageData;
-        // our file to download
-        var url = "http://www.phonegaptutorial.com/wp-content/uploads/examples/phonegap-logo.png";
-        alert(url);
-        // we need to access LocalFileSystem
-        window.requestFileSystem(window.LocalFileSystem.PERSISTENT, 0, function(fs)
-        {
-            // create the download directory is doesn't exist
-            // fs.root.getDirectory('downl', { create: true });
-         
-            // we will save file in .. downloads/phonegap-logo.png
-            var filePath = fs.root.toURL() + 'immagine.png';
-            alert(filePath);
-            var fileTransfer = new window.FileTransfer();
-            var uri = encodeURI(url);
-            alert(uri);
-            fileTransfer.download(uri, filePath, function(entry)
-            {
-                alert("Successfully downloaded file");
-            },
-            function(error)
-            {
-                alert("Some error " + error.code );
-            }, 
-            false);
-        });
+        alert(imageData);
+        alert(imageData.toURL());
+        //// our file to download
+        //var url = "http://www.phonegaptutorial.com/wp-content/uploads/examples/phonegap-logo.png";
+        //alert(url);
+        //// we need to access LocalFileSystem
+        //window.requestFileSystem(window.LocalFileSystem.PERSISTENT, 0, function(fs)
+        //{
+        //    // create the download directory is doesn't exist
+        //    // fs.root.getDirectory('downl', { create: true });
+        // 
+        //    // we will save file in .. downloads/phonegap-logo.png
+        //    var filePath = fs.root.toURL() + 'immagine.png';
+        //    alert(filePath);
+        //    
+        //    imageData.copyTo
+        //    
+        //    var fileTransfer = new window.FileTransfer();
+        //    var uri = encodeURI(url);
+        //    alert(uri);
+        //    fileTransfer.download(uri, filePath, function(entry)
+        //    {
+        //        alert("Successfully downloaded file");
+        //    },
+        //    function(error)
+        //    {
+        //        alert("Some error " + error.code );
+        //    }, 
+        //    false);
+        //});
     },
     onFail: function(msg){
         app.showAlert("failed : " + error.code,"msg");
