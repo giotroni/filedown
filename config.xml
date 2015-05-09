@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns     = "http://www.w3.org/ns/widgets"
+        xmlns:gap = "http://phonegap.com/ns/1.0"
+        id        = "it.troni.filedown"
+        versionCode="10"
+        version   = "1.1.0">
+
+    <name>fileDown</name>
+
+    <description>
+        Una prova
+    </description>
+
+    <author href="http://www.troni.it" email="giorgio@troni.it">
+        Girogio Troni
+    </author>
+ 
+    <gap:platform name="android" />
+    
+    <icon src="img/icon.jpg" />
+
+    <feature name="http://api.phonegap.com/1.0/camera"/>
+    <feature name="http://api.phonegap.com/1.0/notification"/>
+    <feature name="http://api.phonegap.com/1.0/file"/>
+
+    <feature name="http://api.phonegap.com/1.0/device" />
+
+    <gap:plugin name="org.apache.cordova.camera"/>
+    <gap:plugin name="org.apache.cordova.dialogs" />
+    <gap:plugin name="org.apache.cordova.file" />    
+
+
+</widget>

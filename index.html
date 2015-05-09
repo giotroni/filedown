@@ -1,0 +1,37 @@
+<!DOCTYPE html> 
+<html>
+<head>
+    <title>firstAppa</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css">
+    
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+    
+    <script src="phonegap.js"></script>
+    
+    <script src="js/main.js"></script>
+
+
+</head>
+
+<body>
+    <div data-role="page" id="page-home" class="copertina">
+        <div data-role="header">
+            <h2>fileDown</h2>
+        </div>
+        <div role="main" class="ui-content" id="content-home">
+	    <div id="lblDesc"></div>
+            <div id="camera">
+                <img style="width:60px;height:60px;" id="smallImage" src="img/rugby.jpg" />
+                <button id = "btnFoto">Capture Photo</button>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <a href="#" data-role="button" id="btnEntra" data-icon="arrow-r">Pronto a scattare</a>
+        </div>
+
+    </div><!-- /page-home -->
+</body>
+</html>
