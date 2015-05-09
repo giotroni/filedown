@@ -46,18 +46,18 @@ var app = {
             // fs.root.getDirectory('downl', { create: true });
          
             // we will save file in .. downloads/phonegap-logo.png
-            var filePath = fs.root.fullPath + '/immagine.png';
+            var filePath = fs.root.toURL() + '/immagine.png';
             alert(filePath);
             var fileTransfer = new window.FileTransfer();
             var uri = encodeURI(url);
             alert(uri);
             fileTransfer.download(uri, filePath, function(entry)
             {
-                alert("Successfully downloaded file, full path is " + entry.fullPath);
+                alert("Successfully downloaded file");
             },
             function(error)
             {
-                alert("Some error " + error.code + " for " + url);
+                alert("Some error " + error.code );
             }, 
             false);
         });
