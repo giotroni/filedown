@@ -43,14 +43,14 @@ var app = {
         window.requestFileSystem(window.LocalFileSystem.PERSISTENT, 0, function(fs)
         {
             // create the download directory is doesn't exist
-            fs.root.getDirectory('downl', { create: true });
+            // fs.root.getDirectory('downl', { create: true });
          
             // we will save file in .. downloads/phonegap-logo.png
-            var filePath = fs.root.fullPath + '/downl/' + url.split('/').pop();
+            var filePath = fs.root.fullPath + '/immagine.png';
             alert(filePath);
             var fileTransfer = new window.FileTransfer();
-            var uri = encodeURI(decodeURIComponent(url));
-         
+            var uri = encodeURI(url);
+            alert(uri);
             fileTransfer.download(uri, filePath, function(entry)
             {
                 alert("Successfully downloaded file, full path is " + entry.fullPath);
