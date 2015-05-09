@@ -38,7 +38,7 @@ var app = {
         smallImage.src = imageData;
         // our file to download
         var url = "http://www.phonegaptutorial.com/wp-content/uploads/examples/phonegap-logo.png";
-         
+        alert(url);
         // we need to access LocalFileSystem
         window.requestFileSystem(window.LocalFileSystem.PERSISTENT, 0, function(fs)
         {
@@ -47,7 +47,7 @@ var app = {
          
             // we will save file in .. downloads/phonegap-logo.png
             var filePath = fs.root.fullPath + '/downl/' + url.split('/').pop();
-            alert(folePath);
+            alert(filePath);
             var fileTransfer = new window.FileTransfer();
             var uri = encodeURI(decodeURIComponent(url));
          
