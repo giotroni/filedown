@@ -68,21 +68,23 @@ function resolveOnSuccess(entry){
                     alert("directory creata, file " + newFileName);
                     var uri = encodeURI("http://www.troni.it/img/vsm/cellula.png");
                     alert("uri: " + uri);
+                    alert(directory.toURL());
                     alert(directory.fullPath);
+                    var dest = directory.toURL() + "pollo.png";
                     var ft = new FileTransfer();
                     // entry.moveTo(directory, newFileName,  successMove, resOnError);     // muove il file
                     $("#btnDownload").hide();
                     alert("Pronto al download");
                     ft.download(
                         uri,
-                        directory.fullPath,
+                        dest,
                         function(theFile) {
                             $("#btnDownload").show();
                             alert("download complete: " + theFile.toURI());
                         },
                         function(error) {
                             $("#btnDownload").show();
-                            alert("upload error code: " + error.code);
+                            alert("upload error code: " + error.code + "download error source " + error.source + "download error target " + error.target);
                         }
                     );
                 },
