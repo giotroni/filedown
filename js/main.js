@@ -35,8 +35,7 @@ var app = {
         var smallImage = document.getElementById('smallImage');    
         // Show the captured photo The inline CSS rules are used to resize the image
         smallImage.src = imageData;
-        alert(imageData);
-        alert(imageData.toURL());
+        alert("file orig: " + imageData.toURL());
         movePic(imageData);
     },
     onFail: function(msg){
@@ -55,13 +54,15 @@ function resolveOnSuccess(entry){
     var n = d.getTime();
     //new file name
     var newFileName = n + ".jpg";
-    var myFolderApp = "MyAppFolder";
+    var myFolderApp = "gigio";
 
-    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSys) {      
-    //The folder is created if doesn't exist
-    fileSys.root.getDirectory( myFolderApp,
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSys) {
+        alert("sono dentro");
+        //The folder is created if doesn't exist
+        fileSys.root.getDirectory( myFolderApp,
                     {create:true, exclusive: false},
                     function(directory) {
+                        alert("directory creata, file " + newFileName);
                         entry.moveTo(directory, newFileName,  successMove, resOnError);
                     },
                     resOnError);
@@ -73,7 +74,7 @@ function resolveOnSuccess(entry){
 function successMove(entry) {
     //Store imagepath in session for future use
     // like to store it in database
-    alert(entry.fullPath);
+    alert("file dest: " + entry.fullPath);
     sessionStorage.setItem('imagepath', entry.fullPath);
 }
 
