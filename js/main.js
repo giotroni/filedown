@@ -97,27 +97,26 @@ function downloadFile(){
                 myFolderApp,
                 {create:true, exclusive: false},
                 function(directory) {                           // cartella creata
-                    alert("directory creata" );
-                    var fileTransfer = new FileTransfer();
+                    alert("directory creata" + myFolderApp);
+                    var fs = new FileTransfer();
                     var uri = encodeURI("http://www.w3.org/2011/web-apps-ws/papers/Nitobi.pdf");
                     alert("uri: " + uri);
-                    
-                    fileTransfer.download(
-                        uri,
-                        directory,
-                        function(theFile) {
-                            $("#btnDownload").show();
-                            alert("download complete: " + theFile.toURI());
-                        },
-                        function(error) {
-                            $("#btnDownload").show();
-                            alert("upload error code: " + error.code);
-                        }
-                    );
+                    alert("Dir: " + directory);
+                    //fileTransfer.download(
+                    //    uri,
+                    //    directory,
+                    //    function(theFile) {
+                    //        $("#btnDownload").show();
+                    //        alert("download complete: " + theFile.toURI());
+                    //    },
+                    //    function(error) {
+                    //        $("#btnDownload").show();
+                    //        alert("upload error code: " + error.code);
+                    //    }
+                    //);
                 }, 
                 resOnError
             );
-
         },
         resOnError
     );
