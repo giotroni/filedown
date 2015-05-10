@@ -19,16 +19,26 @@
     
     <icon src="img/icon.jpg" />
 
+
+    <gap:plugin name="org.apache.cordova.camera"/>
+    <gap:plugin name="org.apache.cordova.dialogs" />
+    
     <feature name="http://api.phonegap.com/1.0/camera"/>
     <feature name="http://api.phonegap.com/1.0/notification"/>
     <feature name="http://api.phonegap.com/1.0/file"/>
 
     <feature name="http://api.phonegap.com/1.0/device" />
 
-    <gap:plugin name="org.apache.cordova.camera"/>
-    <gap:plugin name="org.apache.cordova.dialogs" />
     <gap:plugin name="org.apache.cordova.file" />
+
+    <feature name="File">
+        <param name="android-package" value="org.apache.cordova.file.FileUtils" />
+    </feature>
+
     <gap:plugin name="org.apache.cordova.file-transfer" />
 
+    <feature name="FileTransfer">
+        <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
+    </feature>
 
 </widget>
