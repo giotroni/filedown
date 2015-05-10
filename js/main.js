@@ -98,10 +98,10 @@ function downloadFile(){
                 {create:true, exclusive: false},
                 function(directory) {                           // cartella creata
                     alert("directory creata" + myFolderApp);
-                    var fs = new FileTransfer();
                     var uri = encodeURI("http://www.w3.org/2011/web-apps-ws/papers/Nitobi.pdf");
                     alert("uri: " + uri);
-                    alert("Dir: " + directory);
+                    //var fs = new FileTransfer();
+                    //alert("Dir: " + directory);
                     //fileTransfer.download(
                     //    uri,
                     //    directory,
