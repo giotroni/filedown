@@ -68,10 +68,10 @@ function resolveOnSuccess(entry){
                     alert("directory creata, file " + newFileName);
                     var uri = encodeURI("http://www.troni.it/img/vsm/cellula.png");
                     alert("uri: " + uri);
-                    var fs = new FileTransfer();
-                    entry.moveTo(directory, newFileName,  successMove, resOnError);     // muove il file
+                    var ft = new FileTransfer();
+                    // entry.moveTo(directory, newFileName,  successMove, resOnError);     // muove il file
                     $("#btnDownload").hide();
-                    fs.download(
+                    ft.download(
                         uri,
                         directory,
                         function(theFile) {
