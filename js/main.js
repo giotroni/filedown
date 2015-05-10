@@ -22,11 +22,16 @@ var app = {
         $("#btnFoto").on("click", app.capturePhoto);
         $("#btnDownload").on("click", downloadFile);
         var draggable = document.getElementById('draggable');
+        var altezza = $(document).height();
         draggable.addEventListener('touchmove', function(event){
             var touch = event.targetTouches[0];
             draggable.style.left = touch.pageX - 25 + 'px';
             draggable.style.top= touch.pageY - 25 + 'px';
-            $("#btnDownload").html("X:"+touch.pageX+" Y:"+touch.pageY  );
+            $("#btnDownload").html("alt" + (altezza *4 / 5)+"X:"+touch.pageX+" Y:"+touch.pageY  );
+            if(touch.pageY  > (altezza *4 / 5)){
+                alert("stop");
+                app.capturePhoto();
+            }
             event.preventDefault();            
         }, false);
     },
