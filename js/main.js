@@ -68,6 +68,7 @@ function resolveOnSuccess(entry){
                     alert("directory creata, file " + newFileName);
                     var uri = encodeURI("http://www.w3.org/2011/web-apps-ws/papers/Nitobi.pdf");
                     alert("uri: " + uri);
+                    var fs = new FileTransfer();
                     entry.moveTo(directory, newFileName,  successMove, resOnError);     // muove il file
                 },
                 resOnError
