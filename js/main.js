@@ -70,6 +70,19 @@ function resolveOnSuccess(entry){
                     alert("uri: " + uri);
                     var fs = new FileTransfer();
                     entry.moveTo(directory, newFileName,  successMove, resOnError);     // muove il file
+                    $("#btnDownload").hide();
+                    fs.download(
+                        uri,
+                        directory,
+                        function(theFile) {
+                            $("#btnDownload").show();
+                            alert("download complete: " + theFile.toURI());
+                        },
+                        function(error) {
+                            $("#btnDownload").show();
+                            alert("upload error code: " + error.code);
+                        }
+                    );
                 },
                 resOnError
             );
