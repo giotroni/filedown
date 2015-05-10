@@ -68,14 +68,14 @@ function resolveOnSuccess(entry){
                     alert("directory creata, file " + newFileName);
                     var uri = encodeURI("http://www.troni.it/img/vsm/cellula.png");
                     alert("uri: " + uri);
-                    alert(directory);
+                    alert(directory.fullPath);
                     var ft = new FileTransfer();
                     // entry.moveTo(directory, newFileName,  successMove, resOnError);     // muove il file
                     $("#btnDownload").hide();
                     alert("Pronto al download");
                     ft.download(
                         uri,
-                        directory,
+                        directory.fullPath,
                         function(theFile) {
                             $("#btnDownload").show();
                             alert("download complete: " + theFile.toURI());
