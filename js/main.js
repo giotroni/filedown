@@ -18,9 +18,8 @@ var app = {
     onDeviceReady: function(){
         app.showAlert("Chiamata alla fine del caricamento","msg");
         destinationType=navigator.camera.DestinationType;
-        $("#btnFoto").hide();
         $("#btnEntra").on("click", app.nextPage);
-        $("#btnFoto").on("click", app.capturePhoto);
+        $("#btnFoto").on("click", capture);
     },
     nextPage: function(){
         app.showAlert("Altra pagina","msg");
@@ -29,7 +28,7 @@ var app = {
     capturePhoto: function() {
         app.showAlert("Fotografa","msg");
         $("#btnFoto").hide();
-        navigator.camera.getPicture(app.onPhotoFileSuccess, app.onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
+        navigator.camera.getPicture(onPhotoFileSuccess, app.onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
     },
     onPhotoFileSuccess: function(imageData) {
         // Get image handle
@@ -38,40 +37,49 @@ var app = {
         smallImage.src = imageData;
         alert(imageData);
         alert(imageData.toURL());
-        //// our file to download
-        //var url = "http://www.phonegaptutorial.com/wp-content/uploads/examples/phonegap-logo.png";
-        //alert(url);
-        //// we need to access LocalFileSystem
-        //window.requestFileSystem(window.LocalFileSystem.PERSISTENT, 0, function(fs)
-        //{
-        //    // create the download directory is doesn't exist
-        //    // fs.root.getDirectory('downl', { create: true });
-        // 
-        //    // we will save file in .. downloads/phonegap-logo.png
-        //    var filePath = fs.root.toURL() + 'immagine.png';
-        //    alert(filePath);
-        //    
-        //    imageData.copyTo
-        //    
-        //    var fileTransfer = new window.FileTransfer();
-        //    var uri = encodeURI(url);
-        //    alert(uri);
-        //    fileTransfer.download(uri, filePath, function(entry)
-        //    {
-        //        alert("Successfully downloaded file");
-        //    },
-        //    function(error)
-        //    {
-        //        alert("Some error " + error.code );
-        //    }, 
-        //    false);
-        //});
+        movePic(imageData);
     },
     onFail: function(msg){
         app.showAlert("failed : " + error.code,"msg");
     }
 };
 
+
+function movePic(file){ 
+    window.resolveLocalFileSystemURI(file, resolveOnSuccess, resOnError); 
+} 
+
+//Callback function when the file system uri has been resolved
+function resolveOnSuccess(entry){ 
+    var d = new Date();
+    var n = d.getTime();
+    //new file name
+    var newFileName = n + ".jpg";
+    var myFolderApp = "MyAppFolder";
+
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSys) {      
+    //The folder is created if doesn't exist
+    fileSys.root.getDirectory( myFolderApp,
+                    {create:true, exclusive: false},
+                    function(directory) {
+                        entry.moveTo(directory, newFileName,  successMove, resOnError);
+                    },
+                    resOnError);
+                    },
+    resOnError);
+}
+
+//Callback function when the file has been moved successfully - inserting the complete path
+function successMove(entry) {
+    //Store imagepath in session for future use
+    // like to store it in database
+    alert(entry.fullPath);
+    sessionStorage.setItem('imagepath', entry.fullPath);
+}
+
+function resOnError(error) {
+    alert(error.code);
+}
 
 
 app.initialize();
