@@ -35,7 +35,7 @@ var app = {
         var smallImage = document.getElementById('smallImage');    
         // Show the captured photo The inline CSS rules are used to resize the image
         smallImage.src = imageData;
-        alert("file orig: " + imageData.toURL());
+        alert("file orig: " + imageData);
         movePic(imageData);
     },
     onFail: function(msg){
