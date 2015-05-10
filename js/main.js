@@ -26,7 +26,7 @@ var app = {
             var touch = event.targetTouches[0];
             draggable.style.left = touch.pageX - 25 + 'px';
             draggable.style.top= touch.pageY - 25 + 'px';
-            
+            $("#btnDownload").html("X:"+touch.pageX+" Y:"+touch.pageY  );
             event.preventDefault();            
         }, false);
     },
