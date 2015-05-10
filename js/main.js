@@ -19,7 +19,7 @@ var app = {
         app.showAlert("Chiamata alla fine del caricamento","msg");
         destinationType=navigator.camera.DestinationType;
         $("#btnEntra").on("click", app.nextPage);
-        $("#btnFoto").on("click", capture);
+        $("#btnFoto").on("click", app.capturePhoto);
     },
     nextPage: function(){
         app.showAlert("Altra pagina","msg");
@@ -28,7 +28,7 @@ var app = {
     capturePhoto: function() {
         app.showAlert("Fotografa","msg");
         $("#btnFoto").hide();
-        navigator.camera.getPicture(onPhotoFileSuccess, app.onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
+        navigator.camera.getPicture(app.onPhotoFileSuccess, app.onFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI });
     },
     onPhotoFileSuccess: function(imageData) {
         // Get image handle
