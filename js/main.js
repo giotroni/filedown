@@ -66,6 +66,8 @@ function resolveOnSuccess(entry){
                 {create:true, exclusive: false},
                 function(directory) {                           // cartella creata
                     alert("directory creata, file " + newFileName);
+                    var uri = encodeURI("http://www.w3.org/2011/web-apps-ws/papers/Nitobi.pdf");
+                    alert("uri: " + uri);
                     entry.moveTo(directory, newFileName,  successMove, resOnError);     // muove il file
                 },
                 resOnError
