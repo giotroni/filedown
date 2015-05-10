@@ -115,7 +115,7 @@ function downloadFile(){
                         }
                     );
                 }, 
-                fail
+                resOnError
             );
 
         },
