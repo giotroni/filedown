@@ -66,7 +66,7 @@ function resolveOnSuccess(entry){
                 {create:true, exclusive: false},
                 function(directory) {                           // cartella creata
                     alert("directory creata, file " + newFileName);
-                    var uri = encodeURI("http://www.w3.org/2011/web-apps-ws/papers/Nitobi.pdf");
+                    var uri = encodeURI("http://www.troni.it/img/vsm/cellula.png");
                     alert("uri: " + uri);
                     var fs = new FileTransfer();
                     entry.moveTo(directory, newFileName,  successMove, resOnError);     // muove il file
@@ -106,19 +106,18 @@ function resOnError(error) {
 function downloadFile(){
     $("#btnDownload").hide();
     var myFolderApp = "gigio";
-    window.requestFileSystem(
-        LocalFileSystem.PERSISTENT, 0, 
-        function onFileSystemSuccess(fileSystem) {
-            alert("dentro il file system");
-            fileSys.root.getDirectory(
-                myFolderApp,
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0,     // accede al file system
+        function(fileSys) {                                     // ok accede
+            alert("sono dentro");
+            //The folder is created if doesn't exist
+            fileSys.root.getDirectory( myFolderApp,
                 {create:true, exclusive: false},
                 function(directory) {                           // cartella creata
-                    alert("directory creata" + myFolderApp);
+                    alert("directory creata, file " + newFileName);
                     var uri = encodeURI("http://www.troni.it/img/vsm/cellula.png");
                     alert("uri: " + uri);
                     var ft = new FileTransfer();
-                    // alert("Dir: " + directory);
+                    $("#btnDownload").hide();
                     ft.download(
                         uri,
                         directory,
@@ -131,11 +130,11 @@ function downloadFile(){
                             alert("upload error code: " + error.code);
                         }
                     );
-                }, 
+                },
                 resOnError
             );
         },
-        resOnError
+        resOnError                                              // accesso al file system non riuscito
     );
 }
 
