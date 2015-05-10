@@ -25,6 +25,7 @@ var app = {
     nextPage: function(){
         app.showAlert("Altra pagina","msg");
         $("#btnFoto").show();
+        $("#btnDownload").show();
     },
     capturePhoto: function() {
         app.showAlert("Fotografa","msg");
@@ -98,8 +99,8 @@ function downloadFile(){
                 {create:true, exclusive: false},
                 function(directory) {                           // cartella creata
                     alert("directory creata" + myFolderApp);
-                    var uri = encodeURI("http://www.w3.org/2011/web-apps-ws/papers/Nitobi.pdf");
-                    alert("uri: " + uri);
+                    //var uri = encodeURI("http://www.w3.org/2011/web-apps-ws/papers/Nitobi.pdf");
+                    //alert("uri: " + uri);
                     //var fs = new FileTransfer();
                     //alert("Dir: " + directory);
                     //fileTransfer.download(
