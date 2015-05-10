@@ -21,6 +21,14 @@ var app = {
         $("#btnEntra").on("click", app.nextPage);
         $("#btnFoto").on("click", app.capturePhoto);
         $("#btnDownload").on("click", downloadFile);
+        var draggable = document.getElementById('draggable');
+        draggable.addEventListener('touchmove', function(event){
+            var touch = event.targetTouches[0];
+            draggable.style.left = touch.pageX - 25 + 'px';
+            draggable.style.top= touch.pageY - 25 + 'px';
+            
+            event.preventDefault();            
+        }, false);
     },
     nextPage: function(){
         app.showAlert("Altra pagina","msg");
