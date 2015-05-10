@@ -20,6 +20,7 @@ var app = {
         destinationType=navigator.camera.DestinationType;
         $("#btnEntra").on("click", app.nextPage);
         $("#btnFoto").on("click", app.capturePhoto);
+        $("#btnDownload").on("click", downloadFile);
     },
     nextPage: function(){
         app.showAlert("Altra pagina","msg");
@@ -56,18 +57,21 @@ function resolveOnSuccess(entry){
     var newFileName = n + ".jpg";
     var myFolderApp = "gigio";
 
-    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSys) {
-        alert("sono dentro");
-        //The folder is created if doesn't exist
-        fileSys.root.getDirectory( myFolderApp,
-                    {create:true, exclusive: false},
-                    function(directory) {
-                        alert("directory creata, file " + newFileName);
-                        entry.moveTo(directory, newFileName,  successMove, resOnError);
-                    },
-                    resOnError);
-                    },
-    resOnError);
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0,     // accede al file system
+        function(fileSys) {                                     // ok accede
+            alert("sono dentro");
+            //The folder is created if doesn't exist
+            fileSys.root.getDirectory( myFolderApp,
+                {create:true, exclusive: false},
+                function(directory) {                           // cartella creata
+                    alert("directory creata, file " + newFileName);
+                    entry.moveTo(directory, newFileName,  successMove, resOnError);     // muove il file
+                },
+                resOnError
+            );
+        },
+        resOnError                                              // accesso al file system non riuscito
+    );
 }
 
 //Callback function when the file has been moved successfully - inserting the complete path
@@ -80,6 +84,43 @@ function successMove(entry) {
 
 function resOnError(error) {
     alert(error.code);
+}
+
+function downloadFile(){
+    $("#btnDownload").hide();
+    var myFolderApp = "gigio";
+    window.requestFileSystem(
+        LocalFileSystem.PERSISTENT, 0, 
+        function onFileSystemSuccess(fileSystem) {
+            alert("dentro il file system");
+            fileSys.root.getDirectory(
+                myFolderApp,
+                {create:true, exclusive: false},
+                function(directory) {                           // cartella creata
+                    alert("directory creata" );
+                    var fileTransfer = new FileTransfer();
+                    var uri = encodeURI("http://www.w3.org/2011/web-apps-ws/papers/Nitobi.pdf");
+                    alert("uri: " + uri);
+                    
+                    fileTransfer.download(
+                        uri,
+                        directory,
+                        function(theFile) {
+                            $("#btnDownload").show();
+                            alert("download complete: " + theFile.toURI());
+                        },
+                        function(error) {
+                            $("#btnDownload").show();
+                            alert("upload error code: " + error.code);
+                        }
+                    );
+                }, 
+                fail
+            );
+
+        },
+        resOnError
+    );
 }
 
 
